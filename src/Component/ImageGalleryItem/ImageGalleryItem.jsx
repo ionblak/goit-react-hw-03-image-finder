@@ -1,0 +1,45 @@
+import React from 'react';
+import { createUseStyles } from 'react-jss';
+import PropTypes from 'prop-types';
+
+const useStyles = createUseStyles({
+  ImageGalleryItem: {
+    borderRadius: '2px',
+    boxShadow: [
+      '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
+      ' 0px 1px 1px 0px rgba(0, 0, 0, 0.14)',
+      '0px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+    ],
+  },
+  ImageGalleryItemImage: {
+    width: '100%',
+    height: '260px',
+    objectFit: 'cover',
+    transition: ['transform', '250ms', 'cubic-bezier(0.4, 0, 0.2, 1)'],
+    '&:hover': {
+      transform: 'scale(1.03)',
+      cursor: 'zoom-in',
+    },
+  },
+});
+
+const ImageGalleryItem = ({ url, titel, onClick, urlForModal }) => {
+  const classes = useStyles();
+  return (
+    <li
+      className={classes.ImageGalleryItem}
+      onClick={() => onClick(urlForModal)}
+    >
+      <img src={url} alt={titel} className={classes.ImageGalleryItemImage} />
+    </li>
+  );
+};
+
+ImageGalleryItem.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  url: PropTypes.string,
+  titel: PropTypes.string,
+  urlForModal: PropTypes.string,
+};
+
+export default ImageGalleryItem;
