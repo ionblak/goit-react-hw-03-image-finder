@@ -21,7 +21,10 @@ class App extends Component {
   };
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    if (prevState.images.length < this.state.images.length) {
+    if (
+      prevState.images.length < this.state.images.length &&
+      this.state.images.length > 12
+    ) {
       return 'tro-lo-lo';
     }
     return null;
@@ -90,9 +93,7 @@ class App extends Component {
         {images.length > 0 && (
           <ImageGallery images={images} onClick={this.toggleModal} />
         )}
-        {images.length > 0 && !isLoading && (
-          <Button onClick={this.hendleButtonClick} />
-        )}
+        {images.length > 0 && <Button onClick={this.hendleButtonClick} />}
         {showModal && (
           <Modal onClose={this.toggleModal}>
             <img src={modalImgUrl} alt="modal img" />
