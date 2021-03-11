@@ -6,6 +6,7 @@ import BlockLoader from './Component/Loader';
 import Button from './Component/Button';
 import Modal from './Component/Modal';
 import fetchImagesWithQuery from './api/imagesApi';
+import Slider from './Component/Slider';
 
 import styles from './App.module.css';
 
@@ -96,7 +97,7 @@ class App extends Component {
         {images.length > 0 && <Button onClick={this.hendleButtonClick} />}
         {showModal && (
           <Modal onClose={this.toggleModal}>
-            <img src={modalImgUrl} alt="modal img" />
+            <Slider modalImgUrl={modalImgUrl} images={images} />
           </Modal>
         )}
       </div>
